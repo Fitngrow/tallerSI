@@ -1,0 +1,23 @@
+{
+  "name": "contactlist",
+  "version": "0.0.0",
+  "description": "MII Sport tracker project",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlbertFX91/fitngrow.git"
+  },
+  "author": "Albert_FX",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/AlbertFX91/fitngrow/issues"
+  },
+  "homepage": "https://github.com/AlbertFX91/fitngrow#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
