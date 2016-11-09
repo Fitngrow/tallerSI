@@ -12,6 +12,17 @@ var express = require('express');
  */
 var app = express();
 
+
+var contact1 = {
+    name: "alberto",
+    phone: 123456789
+};
+var contact2 = {
+    name: "luis",
+    phone: 321654987
+};
+
+
 /*
     Definimos una función de callback que se va a ejecutar cada vez que haga alguien un get al servidor
     req: Petición
