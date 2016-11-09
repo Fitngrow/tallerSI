@@ -27,7 +27,19 @@ app.use(bodyParser.json());
     res: Objeto de la respuesta
  */
 app.get(apiBaseURL+'/contacts', function(req, res){
+    console.log("NEW GET");
     res.json(contacts);
+});
+
+app.post(apiBaseURL+'/contacts', function(req, res){
+    var contact = req.body;
+    console.log("NEW POST");
+    console.log("Data: "+contact);
+
+    contacts.push(contact);
+
+    res.sendStatus(200);
+
 });
 
 app.listen(1000);
