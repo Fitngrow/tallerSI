@@ -24,16 +24,51 @@ app.use(bodyParser.json());
 
 app.get(baseApi+'/contacts', (req, res)=>{
     cl("New GET request over /contacts");
-    
-    //res.json(contacts);
+    db.find({}, (err,contacts)=>{
+        if (err){
+            res.sendStatus(500);
+        }else{
+            res.send(contacts);
+        }
+    });
 
 });
 
 app.post(baseApi+'/contacts', (req, res)=>{
     cl("New POST request over /contacts");
     var contact = req.body;
-    contacts.push(contact);
+    db.insert(contact);
     res.sendStatus(200);
+
+});
+
+
+app.get(baseApi+'/contacts/:name', (req, res)=>{
+    var name = req.params.name;
+    cl("New GET request over /contacts/"+name);
+
+    db.find({name: name}, (err,contacts)=>{
+        if (err){
+            res.sendStatus(500);
+        }else{
+            contacts.length > 0 ? res.send(contacts[0]) : res.sendStatus(404);
+        }
+    });
+
+});
+
+app.delete(baseApi+'/contacts/:name', (req, res)=>{
+    var name = req.params.name;
+    cl("New DELETE request over /contacts/"+name);
+
+    db.remove({name: name},{}, (err,numRemoved)=>{
+        if (err){
+            res.sendStatus(500);
+        }else{
+            cl("Deleted "+numRemoved+" objects")
+            res.sendStatus(200);
+        }
+    });
 
 });
 
