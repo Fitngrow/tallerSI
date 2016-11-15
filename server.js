@@ -31,7 +31,6 @@ app.get(baseApi+'/contacts', (req, res)=>{
             res.send(contacts);
         }
     });
-
 });
 
 app.post(baseApi+'/contacts', (req, res)=>{
@@ -39,7 +38,6 @@ app.post(baseApi+'/contacts', (req, res)=>{
     var contact = req.body;
     db.insert(contact);
     res.sendStatus(200);
-
 });
 
 
@@ -65,7 +63,29 @@ app.delete(baseApi+'/contacts/:name', (req, res)=>{
         if (err){
             res.sendStatus(500);
         }else{
-            cl("Deleted "+numRemoved+" objects")
+            cl("Deleted "+numRemoved+" objects");
+            res.sendStatus(200);
+        }
+    });
+});
+
+app.put(baseApi+'/contacts/:name', (req, res)=>{
+    var name = req.params.name;
+    var contact = req.body;
+
+    cl("New PUT request over /contacts/"+name);
+    cl("Data: "+JSON.stringify(contact,2));
+
+    if(name != contact.name){
+        res.sendStatus(409);
+        return;
+    }
+
+    db.update({name: name},contact,{}, (err, numAffected)=>{
+        if (err){
+            res.sendStatus(500);
+        }else{
+            cl("Updated "+numAffected+" objects");
             res.sendStatus(200);
         }
     });
