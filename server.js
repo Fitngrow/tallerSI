@@ -1,47 +1,42 @@
-/**
- * Created by Albert_FX on 09/11/2016.
- */
-
-//Vamos a utilizar un modulo, llamado express, que nos permitirá de una forma sencilla hacer un servicio web
-
-var express = require('express');
-
-//Modifica un objeto javascript a JSON
+var express    = require('express');
+var app        = express();
 var bodyParser = require('body-parser');
+var dataStore  = require("nedb");
 
+var port = process.env.PORT || 10000;
 
 //Con la instancia var app creamos nuestro servidor.
-var app = express();
-var apiBaseURL = "/api/v1";
+var baseApi = "/api/v1";
 
-var contact1 = { name: "alberto", phone: 123456789 };
-var contact2 = { name: "luis", phone: 321654987 };
+//Esto nos crea un objeto donde introducir información.
+// Si no indico nada to-do esto lo hace en memoria pero luego veremos como añadirlo en un fichero
+var db = new dataStore();
 
-var contacts = [contact1, contact2];
+cl("DB initialized");
 
+var contacts = [{ name: "pedro", phone: 123456789, email: "pedro@pedro.com"},
+                { name: "pepe",  phone: 611112223, email: "pepe@pepe.com"  }
+               ];
+
+db.insert(contacts);
+cl("Inserted 2 default contacts");
 app.use(bodyParser.json());
 
-/*
-    Definimos una función de callback que se va a ejecutar cada vez que haga alguien un get al servidor
-    req: Petición
-    res: Objeto de la respuesta
- */
-app.get(apiBaseURL+'/contacts', function(req, res){
-    console.log("NEW GET");
-    res.json(contacts);
+app.get(baseApi+'/contacts', (req, res)=>{
+    cl("New GET request over /contacts");
+    
+    //res.json(contacts);
+
 });
 
-app.post(apiBaseURL+'/contacts', function(req, res){
+app.post(baseApi+'/contacts', (req, res)=>{
+    cl("New POST request over /contacts");
     var contact = req.body;
-    console.log("NEW POST");
-    console.log("Data: "+contact);
-
     contacts.push(contact);
-
     res.sendStatus(200);
 
 });
 
-app.listen(1000);
+app.listen(port, ()=>{console.log("Server running on port " + port)});
 
-console.log("Running...");
+function cl(s){console.log(s)}
