@@ -8,7 +8,7 @@ angular.module("ContactListApp")
             });
         }
 
-        $scope.addContact = () =>{
+        $scope.addContact = () => {
             var newContact = $scope.newContact;
             $http.post("/api/v1/contacts", newContact).success((e)=>{
                 refresh();
@@ -16,6 +16,12 @@ angular.module("ContactListApp")
             })
         };
 
+        $scope.deleteContact = (name) =>{
+            $http.delete("/api/v1/contacts/"+name).success((e)=>{
+                refresh();
+            })
+        };
+        
         refresh();
 
     });
