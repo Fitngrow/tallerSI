@@ -5,12 +5,17 @@
     <title>Contact list</title>
     <script src="bower_components/angular/angular.min.js"></script>
     <script src="contact-list-app.js"></script>
+    <script src="list-ctrl.js"></script>
 </head>
 <body>
     <h1>My contact list</h1>
-    In process...
 
-    <input ng-model="test" >{{test}}
+    <div ng-controller="ListCtrl">
+        <input ng-model="test" >{{test}}
+    </div>
+
+
+
 
 
     <a href="https://github.com/AlbertFX91/fitngrow">
