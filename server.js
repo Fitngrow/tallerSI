@@ -8,6 +8,9 @@ var port = process.env.PORT || 10000;
 var baseApi = "/api/v1";
 var dbFileName = path.join(__dirname,'contacts.json');
 
+app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, 'public')));
+
 //Esto nos crea un objeto donde introducir información.
 // Si no indico nada to-do esto lo hace en memoria pero luego veremos como añadirlo en un fichero
 var db = new dataStore({
