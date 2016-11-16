@@ -16,7 +16,7 @@
         <td><button class="btn btn-success" ng-click="addContact()"><span class="glyphicon glyphicon-save" aria-hidden="true"></span></button></td>
     </tr>
     <tr ng-repeat="contact in contactList">
-        <td>{{contact.name}}</td>
+        <td><a href="/#/contacts/{{contact.name}}">{{contact.name}}</a></td>
         <td>{{contact.phone}}</td>
         <td>{{contact.email}}</td>
         <td><button class="btn btn-danger" ng-click="deleteContact(contact.name)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button</td>
