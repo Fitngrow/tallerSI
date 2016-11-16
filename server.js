@@ -44,8 +44,19 @@ app.get(baseApi+'/contacts', (req, res)=>{
 app.post(baseApi+'/contacts', (req, res)=>{
     cl("New POST request over /contacts");
     var contact = req.body;
-    db.insert(contact);
-    res.sendStatus(200);
+    var name = contact.name;
+    db.find({name: name},{}, (err, contacts)=>{
+        if(err){
+            res.sendStatus(500);
+        }else{
+            if(contacts.length>0){
+                res.sendStatus(409);
+            }else{
+                db.insert(contact);
+                res.sendStatus(200);
+            }
+        }
+    });
 });
 
 
