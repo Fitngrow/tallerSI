@@ -1,5 +1,5 @@
 angular.module("ContactListApp")
-    .controller("ListCtrl", ($scope, $http)=>{
+    .controller("ListCtrl", function($scope, $http){
         console.log("List controller initialized");
 
         function refresh(){
@@ -21,7 +21,7 @@ angular.module("ContactListApp")
                 refresh();
             })
         };
-        
+
         refresh();
 
     });
