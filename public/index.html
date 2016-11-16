@@ -10,8 +10,26 @@
 <body>
     <h1>My contact list</h1>
 
+
     <div ng-controller="ListCtrl">
+
         <input ng-model="test" >{{test}}
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="contact in contactList">
+                    <td>{{contact.name}}</td>
+                    <td>{{contact.phone}}</td>
+                    <td>{{contact.email}}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
 
