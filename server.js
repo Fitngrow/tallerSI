@@ -77,6 +77,19 @@ app.delete(baseApi+'/contacts/:name', (req, res)=>{
     });
 });
 
+app.delete(baseApi+'/contacts/', (req, res)=>{
+    cl("New DELETE request over /contacts");
+
+    db.remove({},{multi: true}, (err,numRemoved)=>{
+        if (err){
+            res.sendStatus(500);
+        }else{
+            cl("Deleted "+numRemoved+" objects");
+            res.sendStatus(200);
+        }
+    });
+});
+
 app.put(baseApi+'/contacts/:name', (req, res)=>{
     var name = req.params.name;
     var contact = req.body;
