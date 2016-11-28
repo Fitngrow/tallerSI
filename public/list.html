@@ -13,7 +13,7 @@
         <td><input class="form-control" ng-model="newContact.name"></td>
         <td><input class="form-control" ng-model="newContact.phone"></td>
         <td><input class="form-control" ng-model="newContact.email"></td>
-        <td><button class="btn btn-success" ng-click="addContact()"><span class="glyphicon glyphicon-save" aria-hidden="true"></span></button></td>
+        <td><button class="btn btn-success" ng-click="addContact()" value="add"><span class="glyphicon glyphicon-save" aria-hidden="true"></span></button></td>
     </tr>
     <tr ng-repeat="contact in contactList">
         <td><a href="/#/contacts/{{contact.name}}">{{contact.name}}</a></td>
